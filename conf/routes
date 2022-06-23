@@ -1,0 +1,13 @@
+# Routes
+
+# No Content (for initial testing of functionality)
+GET /functions controllers.FunctionsController.getNoContent
+
+# Get longest consecutive strings
+GET /functions/longestConsec controllers.FunctionsController.getLongestConsec
+
+# Get number of days
+GET /functions/numberOfDays controllers.FunctionsController.getNumberOfDays
+
+# Get winner of war of numbers
+GET /functions/warOfNumbers controllers.FunctionsController.getWarOfNumbers
