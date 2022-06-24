@@ -14,8 +14,8 @@ object FunctionsUtils {
       ) go(strarr.tail, k, getString(strarr, k))
       else go(strarr.tail, k, cur)
     }
-    if (strarr.length < k) "" else go(strarr, k, "")
-  }
+    val len = strarr.length
+    if (len < k || len == 0 || k == 0 ) "" else go(strarr, k, "")  }
 
   def numberOfDaysRec(cost: Int, savingsStart: Int, offset: Int): Int = {
     @tailrec
