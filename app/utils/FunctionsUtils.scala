@@ -1,12 +1,16 @@
 package utils
 
+import models.{LongestConsecParams, NumberOfDaysParams, WarOfNumbersParams}
+import play.api.libs.json.{JsValue, Json}
+
 import scala.annotation.tailrec
 
 object FunctionsUtils {
   private def getString(strArr: Array[String], n: Int): String =
     (for (i <- 0 until n) yield strArr(i)).mkString
 
-  def longestConsecRecurse(strarr: Array[String], k: Int): String = {
+  def longestConsecRecurse(params: LongestConsecParams): JsValue = {
+    val (strarr, k) = (params.strArr, params.k)
     @tailrec
     def go(strarr: Array[String], k: Int, cur: String): String = {
       if (strarr.length < k) cur
@@ -15,9 +19,11 @@ object FunctionsUtils {
       else go(strarr.tail, k, cur)
     }
     val len = strarr.length
-    if (len < k || len == 0 || k == 0 ) "" else go(strarr, k, "")  }
+    Json.toJson(if (len < k || len == 0 || k == 0 ) "" else go(strarr, k, ""))
+  }
 
-  def numberOfDaysRec(cost: Int, savingsStart: Int, offset: Int): Int = {
+  def numberOfDaysRec(params: NumberOfDaysParams): JsValue = {
+    val (cost, savingsStart, offset) = (params.cost, params.savingsStart, params.offset)
     @tailrec
     def go(savings: Int, day: Int, week: Int): Int = {
       if (savings >= cost) day
@@ -27,11 +33,12 @@ object FunctionsUtils {
         go(newSavings, day + 1, newWeek)
       }
     }
-    go(savingsStart, 1, 0) - 1
+    Json.toJson(go(savingsStart, 1, 0) - 1)
   }
 
-  def warOfNumbers(list: List[Int]): Int = {
+  def warOfNumbers(params: WarOfNumbersParams): JsValue = {
+    val list = params.list
     val (odds, evens) = list.partition(_ % 2 == 1)
-    Math.abs(odds.sum - evens.sum)
+    Json.toJson(Math.abs(odds.sum - evens.sum))
   }
 }
