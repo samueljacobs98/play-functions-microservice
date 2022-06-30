@@ -2,6 +2,13 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.must.Matchers
 import utils.FunctionsUtils._
 
+//
+//
+// THESE WILL FAIL AS FUNCTIONS WERE REFACTORED
+// TESTS HAVE NOT BEEN UPDATED TO REFLECT REFACTORING
+//
+//
+
 /** Test our Stack implementation in Spec style. */
 class FunctionsUtilsExamplesTests extends AnyFunSpec with Matchers {
   describe("FunctionsUtils.longestConsecRecurse") {
